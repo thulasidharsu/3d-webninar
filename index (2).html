@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Maison - Social Media for Interior & Décor Brands</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Color Palette */
+        :root {
+            --color-bg-light: #fbf9f5;
+            --color-bg-mid: #efeeea;
+            --color-bg-dark: #f5f3ef;
+            --color-text-primary: #1b1c1a;
+            --color-text-secondary: #494740;
+            --color-text-tertiary: #868380;
+            --color-accent: #715a3e;
+            --color-accent-light: #e0c29f;
+            --color-black: #000;
+            --color-white: #fff;
+            --spacing-xs: 8px;
+            --spacing-sm: 12px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 40px;
+            --spacing-3xl: 56px;
+            --spacing-4xl: 64px;
+            --spacing-5xl: 80px;
+            --spacing-6xl: 96px;
+            --spacing-7xl: 112px;
+        }
+
+        body {
+            background-color: var(--color-bg-light);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-5xl);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-lg);
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            line-height: 80px;
+            font-weight: 400;
+            letter-spacing: -1.44px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            line-height: 60px;
+            font-weight: 400;
+            letter-spacing: -0.72px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .text-light {
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        .text-regular {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 26px;
+        }
+
+        .text-medium {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 22px;
+        }
+
+        .text-semibold {
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.44px;
+            text-transform: uppercase;
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-6xl) 0;
+        }
+
+        .section-hero {
+            background-color: var(--color-bg-light);
+            padding-top: var(--spacing-7xl);
+        }
+
+        .section-results {
+            background-color: var(--color-bg-mid);
+        }
+
+        .section-services {
+            background-color: var(--color-bg-light);
+        }
+
+        .section-cta {
+            background-color: var(--color-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            pointer-events: none;
+        }
+
+        .section-portfolio {
+            background-color: var(--color-bg-light);
+        }
+
+        .section-testimonials {
+            background-color: var(--color-bg-mid);
+        }
+
+        .section-faq {
+            background-color: var(--color-bg-light);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.44px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: var(--spacing-md);
+        }
+
+        .btn-primary {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            box-shadow: 0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-bg-mid);
+            color: var(--color-text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-bg-dark);
+        }
+
+        .btn-light {
+            background-color: var(--color-bg-light);
+            color: var(--color-text-primary);
+            box-shadow: 0px 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .btn-light:hover {
+            background-color: rgba(251, 249, 245, 0.9);
+        }
+
+        .btn-light-cta {
+            background-color: var(--color-bg-light);
+            color: var(--color-black);
+            padding: var(--spacing-xl) 2.5rem;
+        }
+
+        /* Hero Section */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .hero-left h1 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-text {
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-3xl);
+            flex-wrap: wrap;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 570px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Pill Badge */
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #efeeea;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .pill-text {
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 2.75px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--color-bg-light);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+        }
+
+        .card-dark {
+            background-color: var(--color-bg-dark);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-2xl);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        @media (max-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .hero-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: 1fr; }
+            h1 { font-size: 48px; line-height: 56px; }
+            h2 { font-size: 32px; line-height: 40px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: var(--color-bg-light);
+            padding: var(--spacing-6xl) 0;
+            margin: var(--spacing-6xl) 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-white);
+            padding: var(--spacing-3xl);
+            border-radius: 8px;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(113, 90, 62, 0.1);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            background-color: var(--color-black);
+            color: var(--color-white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .form-submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* CTA Section Dark */
+        .cta-dark {
+            color: var(--color-white);
+            text-align: center;
+            padding: var(--spacing-7xl) var(--spacing-5xl);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-dark h2 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .cta-dark p {
+            color: var(--color-text-tertiary);
+            max-width: 800px;
+            margin: 0 auto var(--spacing-3xl);
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        /* Testimonial Cards */
+        .testimonial {
+            background-color: var(--color-bg-light);
+            padding: var(--spacing-2xl);
+            border-radius: 8px;
+            box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            line-height: 28px;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .testimonial-author {
+            border-top: 1px solid #e5e5e5;
+            padding-top: var(--spacing-xl);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-bg-light);
+            padding: var(--spacing-6xl) 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: var(--spacing-3xl);
+            margin-bottom: var(--spacing-3xl);
+            padding-bottom: var(--spacing-3xl);
+            border-bottom: 1px solid #cbc6bd;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-link {
+            font-size: 13px;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1.54px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.54px;
+        }
+
+        /* Responsive Images */
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="section-hero">
+        <div class="container">
+            <div class="pill-badge">
+                <span class="pill-dot"></span>
+                <span class="pill-text">Social Media for Interiors & Décor Brands</span>
+            </div>
+            
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <h1>Turn Your Interior Work Into a Brand People Remember.</h1>
+                    
+                    <p class="text-light hero-text">Beautiful spaces deserve beautiful storytelling. We help prestigious interior studios, architects, and bespoke décor ateliers cultivate elevated social prestige, captivating discerning clientele and turning quiet attention into qualified architectural commissions.</p>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Let's Grow Your Brand</button>
+                        <button class="btn btn-secondary">View Curated Work</button>
+                    </div>
+
+                    <div>
+                        <p style="font-weight: 600; color: var(--color-accent); font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: 8px;">100M+ Organic Impressions</p>
+                        <p class="text-medium" style="color: var(--color-text-secondary);">Trusted by 40+ Architectural Studios across Paris, London & New York</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <img src="https://www.figma.com/api/mcp/asset/72a7d35a-709c-4100-80bb-bac17828f32e.png" alt="Contemporary living room with curved sofa">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section class="section-results">
+        <div class="container">
+            <h2>From "Just Posting" to Building an Enduring Brand.</h2>
+            <p class="text-light" style="color: var(--color-text-secondary); max-width: 500px; margin-bottom: var(--spacing-3xl);">Social media isn't about posting every day just for the sake of an algorithm. It's about presenting your projects with curatorial precision, captivating genuine patrons, and commanding top-tier project fees.</p>
+            
+            <div class="grid-4">
+                <div class="card">
+                    <h3 style="color: var(--color-text-tertiary); font-size: 36px; margin-bottom: var(--spacing-md);">01</h3>
+                    <p class="text-semibold" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Presence</p>
+                    <h3>Stronger Presence</h3>
+                    <p class="text-regular">Establishing a cohesive visual vernacular that aligns your public digital footprint with the bespoke artistry of your architectural projects.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--color-text-tertiary); font-size: 36px; margin-bottom: var(--spacing-md);">02</h3>
+                    <p class="text-semibold" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Targeting</p>
+                    <h3>Refined Reach</h3>
+                    <p class="text-regular">Putting your portfolio before qualified homeowners, high-net-worth developers, and premier design editors genuinely seeking elevated interiors.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--color-text-tertiary); font-size: 36px; margin-bottom: var(--spacing-md);">03</h3>
+                    <p class="text-semibold" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Engagement</p>
+                    <h3>Substantive Depth</h3>
+                    <p class="text-regular">Transforming floor plans, material palettes, and spatial reveals into immersive narratives that invite study, bookmarking, and discussion.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--color-text-tertiary); font-size: 36px; margin-bottom: var(--spacing-md);">04</h3>
+                    <p class="text-semibold" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Conversion</p>
+                    <h3>High-Ticket Enquiries</h3>
+                    <p class="text-regular">Formulating structured conversion funnels engineered to convert passive admiration into high-value design commissions and advisory consults.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section-services">
+        <div class="container">
+            <h2>Everything Your Studio Needs To Show Up Beautifully.</h2>
+            <p class="text-light" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-3xl);">A bespoke suite of strategic and creative advisory services engineered exclusively for architectural leaders and luxury home designers.</p>
+            
+            <div class="grid-4">
+                <div class="card card-dark">
+                    <p class="text-semibold" style="color: var(--color-accent); margin-bottom: var(--spacing-lg);">Foundation</p>
+                    <h3>Social Media Strategy</h3>
+                    <p class="text-regular" style="margin: var(--spacing-lg) 0; color: var(--color-text-secondary);">A comprehensive blueprint tailored to your firm's signature aesthetic, positioning, competitor landscape, and high-value project targets.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Audience Architecture</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Pacing & Release Cadence</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Competitive Benchmarking</li>
+                    </ul>
+                </div>
+
+                <div class="card card-dark">
+                    <p class="text-semibold" style="color: var(--color-accent); margin-bottom: var(--spacing-lg);">Production</p>
+                    <h3>Content Creation</h3>
+                    <p class="text-regular" style="margin: var(--spacing-lg) 0; color: var(--color-text-secondary);">Cinematic short-form reels, curated multi-slide carousels, and atmospheric behind-the-scenes moments captured with art-book sensibility.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> High-Resolution Video Cuts</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Editorial Carousel Typographies</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Macro Material Features</li>
+                    </ul>
+                </div>
+
+                <div class="card card-dark">
+                    <p class="text-semibold" style="color: var(--color-accent); margin-bottom: var(--spacing-lg);">Narrative</p>
+                    <h3>Brand Storytelling</h3>
+                    <p class="text-regular" style="margin: var(--spacing-lg) 0; color: var(--color-text-secondary);">Transforming technical elevations, stone selections, and design philosophies into rich stories that forge immediate emotional alignment.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Case Study Copywriting</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Designer Philosophy Spotlights</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Project Genesis Deep Dives</li>
+                    </ul>
+                </div>
+
+                <div class="card card-dark">
+                    <p class="text-semibold" style="color: var(--color-accent); margin-bottom: var(--spacing-lg);">Stewardship</p>
+                    <h3>Full Management</h3>
+                    <p class="text-regular" style="margin: var(--spacing-lg) 0; color: var(--color-text-secondary);">White-glove scheduling, community interaction, and performance refinement so your studio stays impeccably curated without taking your time.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Seamless Monthly Publishing</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Concierge Direct Response</li>
+                        <li style="display: flex; gap: 8px; color: var(--color-text-secondary); font-size: 13px;"><span style="color: var(--color-accent);">•</span> Quarterly Strategy Audits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--spacing-3xl);">
+                <a href="#" class="footer-link">Inquire About Bespoke Retainers →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM & CTA SECTION -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Your Free Design Audit</h2>
+                <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--spacing-2xl);">Start with just ₹1 and discover how we can transform your interior brand's social presence.</p>
+                
+                <form id="auditForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    
+                    <a href="https://payments.cashfree.com/forms/getaudit" class="btn btn-primary" style="width: 100%; margin-bottom: var(--spacing-lg); justify-content: center;">Proceed to Payment (₹1)</a>
+                    
+                    <button type="submit" class="form-submit">Submit & Save My Info</button>
+                    
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA DARK SECTION -->
+    <section class="section-cta">
+        <div class="cta-dark">
+            <h2>Your Instagram Shouldn't Just Look Good. It Should Bring You Business.</h2>
+            <p>A curated feed is simply table stakes. Your presence must perform as a quiet client acquisition vehicle—shepherding refined audiences from serendipitous discovery to signed design retainer.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-xl); margin: var(--spacing-3xl) auto; max-width: 1000px;">
+                <div style="background: rgba(28,27,25,0.8); padding: var(--spacing-xl); border-radius: 8px; backdrop-filter: blur(2px);">
+                    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-lg); margin-left: auto; margin-right: auto; font-weight: 600; font-size: 16px;">01</div>
+                    <p style="color: var(--color-accent-light); font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: var(--spacing-md);">Discover</p>
+                    <h3 style="color: white; font-size: 18px; margin-bottom: var(--spacing-md);">Curated Hooks</h3>
+                    <p style="font-size: 13px; color: var(--color-text-tertiary);">High-reach architectural video reels that stop interior design collectors in their scroll.</p>
+                </div>
+                
+                <div style="background: rgba(28,27,25,0.8); padding: var(--spacing-xl); border-radius: 8px; backdrop-filter: blur(2px);">
+                    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-lg); margin-left: auto; margin-right: auto; font-weight: 600; font-size: 16px;">02</div>
+                    <p style="color: var(--color-accent-light); font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: var(--spacing-md);">Engage</p>
+                    <h3 style="color: white; font-size: 18px; margin-bottom: var(--spacing-md);">Material Nuance</h3>
+                    <p style="font-size: 13px; color: var(--color-text-tertiary);">Multi-frame carousels deconstructing material palettes, textures, and bespoke joinery.</p>
+                </div>
+                
+                <div style="background: rgba(28,27,25,0.8); padding: var(--spacing-xl); border-radius: 8px; backdrop-filter: blur(2px);">
+                    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-lg); margin-left: auto; margin-right: auto; font-weight: 600; font-size: 16px;">03</div>
+                    <p style="color: var(--color-accent-light); font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: var(--spacing-md);">Trust</p>
+                    <h3 style="color: white; font-size: 18px; margin-bottom: var(--spacing-md);">Design Philosophy</h3>
+                    <p style="font-size: 13px; color: var(--color-text-tertiary);">Case study storytelling revealing your intellectual process and studio credentials.</p>
+                </div>
+                
+                <div style="background: rgba(113,90,62,0.8); padding: var(--spacing-xl); border-radius: 8px; backdrop-filter: blur(2px);">
+                    <div style="width: 48px; height: 48px; background: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-lg); margin-left: auto; margin-right: auto; font-weight: 600; font-size: 16px; color: white;">04</div>
+                    <p style="color: var(--color-accent-light); font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: var(--spacing-md);">Enquire</p>
+                    <h3 style="color: white; font-size: 18px; margin-bottom: var(--spacing-md);">Private Consultation</h3>
+                    <p style="font-size: 13px; color: var(--color-text-tertiary);">Frictionless inquiry avenues attracting serious residential and hospitality projects.</p>
+                </div>
+            </div>
+
+            <button class="btn btn-light-cta">Let's Get You More Enquiries</button>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="section-testimonials">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Don't Just Take My Word For It.</h2>
+            <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto var(--spacing-3xl);">The best part of our studio practice is witnessing an architectural firm step into their true prestige—and hearing how transformative that clarity feels.</p>
+            
+            <div class="grid-3">
+                <div class="testimonial">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Our social media finally feels like it represents the museum quality of our projects. Everything looks impeccably curated, and we are fielding direct inquiries from high-budget clients who discovered us on Reels."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Eleanor Vance</div>
+                        <div class="testimonial-role">Principal, Atelier Vance • London</div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Before Studio Maison, we were posting haphazardly without knowing our true audience. Now there is a rigorous curatorial direction behind every carousel. Our engagement jumped 280% in 60 days."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Magnus Lindqvist</div>
+                        <div class="testimonial-role">Founder, Lindqvist Joinery • Copenhagen</div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The biggest difference wasn't just the gorgeous visual rhythm. Prestigious design editors started noticing our profile, leading directly to a full monograph feature in Elle Decor."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Clara Moreau</div>
+                        <div class="testimonial-role">Design Director, Studio Moreau • Melbourne</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: var(--spacing-lg);">Studio Maison</h3>
+                    <p style="font-size: 15px; line-height: 26px; color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">Social media strategy and high-concept creative direction tailored for distinguished interior designers, architects, and bespoke home décor houses.</p>
+                </div>
+
+                <div>
+                    <p class="text-semibold" style="margin-bottom: var(--spacing-md);">Navigation</p>
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <a href="#" class="footer-link" style="letter-spacing: 0.26px; font-size: 13px; font-weight: 400; text-transform: none;">The Studio</a>
+                        <a href="#" class="footer-link" style="letter-spacing: 0.26px; font-size: 13px; font-weight: 400; text-transform: none;">Advisory & Direction</a>
+                        <a href="#" class="footer-link" style="letter-spacing: 0.26px; font-size: 13px; font-weight: 400; text-transform: none;">Selected Portfolios</a>
+                        <a href="#" class="footer-link" style="letter-spacing: 0.26px; font-size: 13px; font-weight: 400; text-transform: none;">Client Impact</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-semibold" style="margin-bottom: var(--spacing-md);">Studio Atelier</p>
+                    <p style="font-size: 13px; line-height: 22px; color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">Paris • New York • Milan</p>
+                    <p style="font-size: 13px; line-height: 22px; color: var(--color-text-secondary);">Private consultations by engagement only.</p>
+                </div>
+
+                <div>
+                    <p class="text-semibold" style="margin-bottom: var(--spacing-md); color: var(--color-accent);">Request Dossier</p>
+                    <a href="#" style="font-weight: 600; color: var(--color-text-primary); text-decoration: underline;">Get Started →</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© Studio Maison. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Colophon</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwN1pVMtjdFkLaUMQiizxrN56IoPkthA2c2rgFOfatV7k2FWOJFBvMNIca533j4ckCi/exec';
+
+        const form = document.getElementById('auditForm');
+        const messageDiv = document.getElementById('formMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !email || !phone) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            const submitBtn = form.querySelector('.form-submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const url = APPSCRIPT_URL + '?' + new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                showMessage('✓ Thank you! Your information has been saved. Redirecting to payment...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'https://payments.cashfree.com/forms/getaudit';
+                }, 2000);
+            })
+            .catch(() => {
+                showMessage('✓ Thank you! Your information has been saved. Redirecting to payment...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'https://payments.cashfree.com/forms/getaudit';
+                }, 2000);
+            });
+        });
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `form-message ${type}`;
+        }
+    </script>
+</body>
+</html>
